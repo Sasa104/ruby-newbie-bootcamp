@@ -13,6 +13,20 @@ class Hand
   private
 
   def categorize
-    'high-card'
+      p @cards.map{|card| card.face}.uniq
+      if @cards.map{|card| card.suit}.uniq.length == 1
+        return 'flush'
+      elsif @cards.map{|card| card.face}.uniq.length == 2  && @cards.map{|card| card.suit}.uniq.length == 4
+        return 'four-of-a-kind'
+      elsif @cards.map{|card| card.face}.uniq.length == 2
+        return 'full-house'
+      elsif @cards.map{|card| card.face}.uniq.length == 3
+        return 'two-pair'
+      elsif @cards.map{|card| card.face}.uniq.length == 4
+        return 'one-pair'
+      else
+        #フラッシュ以外
+        return 'high-card'
+      end
   end
 end
